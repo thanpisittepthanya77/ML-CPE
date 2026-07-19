@@ -51,3 +51,9 @@ pip install pandas numpy matplotlib seaborn scikit-learn
 
 # 3. Execute the preprocessing pipeline script
 python than.py
+
+### Dataset
+The dataset contains physicochemical properties of wine samples and a quality score (`quality`) used as the target variable.
+
+*   **Source:** [Kaggle - Wine Quality Dataset](https://www.kaggle.com/datasets/yasserh/wine-quality-dataset/data)
+*   **Reference Code:** [Kaggle Notebook - WineQT CSV Analysis](https://www.kaggle.com/code/elifduman/wineqt-csv/notebook)
