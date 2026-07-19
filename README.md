@@ -3,6 +3,9 @@
 ## Overview
 This project demonstrates Data Preprocessing techniques applied to the Amazon Dataset. The complete workflow covers initial data exploration, descriptive data visualization, thorough data cleaning, handling of missing or anomalous elements, and systematic feature engineering to prepare the data for downstream Machine Learning models.
 
+![Histogram](histogram.png.png)
+![Correlation Heatmap](heatmap.png.png)
+
 ## Dataset
 The dataset consists of various product features from Amazon, including prices, star ratings, review counts, and categorical information. The primary objective is to format and transform the raw textual and numeric metrics into an analytical-ready structure.
 
