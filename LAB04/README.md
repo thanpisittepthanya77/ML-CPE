@@ -31,7 +31,7 @@
 ├── database.sqlite           # ฐานข้อมูล SQLite
 └── requirements.txt          # รายการไลบรารีที่ใช้งาน
 ### 5.1 การเปรียบเทียบค่าความแม่นยำของแต่ละค่า k (Accuracy vs. k Value)
-![k Value Comparison](./images/k_comparison.png)
+![k Value Comparison](https://raw.githubusercontent.com/thanpisittepthanya77/ML-CPE/main/LAB04/images/k_comparison.png)
 
 ### 5.2 เมทริกซ์ความสับสน (Confusion Matrix)
-![Confusion Matrix](./images/confusion_matrix.png)
+![Confusion Matrix](https://raw.githubusercontent.com/thanpisittepthanya77/ML-CPE/main/LAB04/images/confusion_matrix.png)
