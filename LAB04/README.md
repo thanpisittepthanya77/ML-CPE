@@ -30,3 +30,8 @@
 ├── Iris.csv                  # ชุดข้อมูล Iris
 ├── database.sqlite           # ฐานข้อมูล SQLite
 └── requirements.txt          # รายการไลบรารีที่ใช้งาน
+### 5.1 การเปรียบเทียบค่าความแม่นยำของแต่ละค่า k (Accuracy vs. k Value)
+![k Value Comparison](./images/k_comparison.png)
+
+### 5.2 เมทริกซ์ความสับสน (Confusion Matrix)
+![Confusion Matrix](./images/confusion_matrix.png)
