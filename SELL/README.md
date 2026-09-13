@@ -1,4 +1,4 @@
-# 🌸 ระบบจำแนกสายพันธุ์ดอกไอริสด้วย SVM (Iris Species Classification)
+#  ระบบจำแนกสายพันธุ์ดอกไอริสด้วย SVM (Iris Species Classification)
 
 ระบบนี้เป็นการใช้โมเดล Support Vector Machine (SVM) พื้นฐานในการจำแนกสายพันธุ์ดอกไอริส 3 ชนิด (Setosa, Versicolor, Virginica) โดยประเมินจากลักษณะความกว้างและความยาวของกลีบดอกครับ
 
