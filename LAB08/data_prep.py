@@ -1,18 +1,32 @@
-import tensorflow as tf
+import torch
+from torchvision import datasets, transforms
+from torch.utils.data import DataLoader
 
-def load_data():
+def get_data_loaders(batch_size=64):
     """
-    โหลดชุดข้อมูล Fashion-MNIST จาก Keras และเตรียมข้อมูลสำหรับ DCNN
+    เตรียม DataLoader สำหรับชุดข้อมูล Fashion-MNIST
+    พร้อมทำ Normalization ข้อมูลให้อยู่ในช่วง [-1, 1]
     """
-    # โหลดชุดข้อมูล Train และ Test
-    (X_train, y_train), (X_test, y_test) = tf.keras.datasets.fashion_mnist.load_data()
+    transform = transforms.Compose([
+        transforms.ToTensor(),
+        transforms.Normalize((0.5,), (0.5,))
+    ])
 
-    # Normalization ค่าพิกเซลให้อยู่ในช่วง [0, 1]
-    X_train = X_train / 255.0
-    X_test = X_test / 255.0
+    train_dataset = datasets.FashionMNIST(
+        root='./data', 
+        train=True, 
+        download=True, 
+        transform=transform
+    )
+    
+    test_dataset = datasets.FashionMNIST(
+        root='./data', 
+        train=False, 
+        download=True, 
+        transform=transform
+    )
 
-    # ปรับมิติข้อมูลให้เป็น (Samples, Height, Width, Channels) -> (28, 28, 1) สำหรับ Conv2D
-    X_train = X_train.reshape(-1, 28, 28, 1)
-    X_test = X_test.reshape(-1, 28, 28, 1)
+    train_loader = DataLoader(dataset=train_dataset, batch_size=batch_size, shuffle=True)
+    test_loader = DataLoader(dataset=test_dataset, batch_size=batch_size, shuffle=False)
 
-    return (X_train, y_train), (X_test, y_test)
+    return train_loader, test_loader

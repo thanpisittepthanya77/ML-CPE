@@ -87,21 +87,3 @@ Sample 5: Actual = Iris-setosa     | Predicted = Iris-setosa
 pip install tensorflow pandas numpy scikit-learn matplotlib
 2.สั่งรันไฟล์หลัก:
 python ML-CPE/LAB07/main.py
-## 📈 ผลการทดลองและการวัดผล (Experimental Results)
-
-### 1. ตารางเปรียบเทียบประสิทธิภาพ (Performance Metrics)
-
-| Configuration | Filters | Epochs | Test Accuracy | Test Loss | Remark |
-| :--- | :---: | :---: | :---: | :---: | :--- |
-| **Config A** | 16 | 50 | 96.67% | 0.1172 | Optimal Fit (เสถียรที่สุด) |
-| **Config B** | 32 | 100 | 100.00% | 0.0215 | Overfitting ในช่วงท้าย |
-
----
-
-### 2. กราฟแสดงการเรียนรู้ (Training & Validation Graphs)
-
-#### 🔹 Config A (16 Filters, 50 Epochs)
-![Config A Results](config_a_results.png)
-
-#### 🔹 Config B (32 Filters, 100 Epochs)
-![Config B Results](config_b_results.png)

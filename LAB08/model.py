@@ -1,41 +1,82 @@
-from tensorflow.keras import layers, models
+import torch
+import torch.nn as nn
 
-def build_dcnn_model(config_name="Config_A", input_shape=(28, 28, 1), num_classes=10):
+class FashionDCNN_ConfigA(nn.Module):
     """
-    สร้างโมเดล DCNN ตาม Configurations เพื่อเทียบความลึกของเลเยอร์
+    Config A: 2 Conv Blocks (Standard DCNN)
+    - Block 1: Conv2d(32) -> ReLU -> MaxPool2d
+    - Block 2: Conv2d(64) -> ReLU -> MaxPool2d
+    - Fully Connected Layers
     """
-    model = models.Sequential()
-    model.add(layers.Input(shape=input_shape))
-
-    if config_name == "Config_A":
-        # Config A: 2 Convolutional Blocks (Shallow DCNN)
-        model.add(layers.Conv2D(32, (3, 3), activation='relu', padding='same'))
-        model.add(layers.MaxPooling2D((2, 2)))
+    def __init__(self):
+        super(FashionDCNN_ConfigA, self).__init__()
+        self.features = nn.Sequential(
+            # Block 1
+            nn.Conv2d(1, 32, kernel_size=3, padding=1),
+            nn.BatchNorm2d(32),
+            nn.ReLU(),
+            nn.MaxPool2d(kernel_size=2, stride=2),
+            
+            # Block 2
+            nn.Conv2d(32, 64, kernel_size=3, padding=1),
+            nn.BatchNorm2d(64),
+            nn.ReLU(),
+            nn.MaxPool2d(kernel_size=2, stride=2)
+        )
         
-        model.add(layers.Conv2D(64, (3, 3), activation='relu', padding='same'))
-        model.add(layers.MaxPooling2D((2, 2)))
+        self.classifier = nn.Sequential(
+            nn.Flatten(),
+            nn.Linear(64 * 7 * 7, 128),
+            nn.ReLU(),
+            nn.Dropout(0.3),
+            nn.Linear(128, 10)
+        )
 
-    elif config_name == "Config_B":
-        # Config B: 3 Convolutional Blocks (Deeper DCNN)
-        model.add(layers.Conv2D(32, (3, 3), activation='relu', padding='same'))
-        model.add(layers.MaxPooling2D((2, 2)))
+    def forward(self, x):
+        x = self.features(x)
+        x = self.classifier(x)
+        return x
+
+
+class FashionDCNN_ConfigB(nn.Module):
+    """
+    Config B: 3 Conv Blocks (Deeper DCNN)
+    - Block 1: Conv2d(32) -> ReLU -> MaxPool2d
+    - Block 2: Conv2d(64) -> ReLU -> MaxPool2d
+    - Block 3: Conv2d(128) -> ReLU -> MaxPool2d
+    - Fully Connected Layers
+    """
+    def __init__(self):
+        super(FashionDCNN_ConfigB, self).__init__()
+        self.features = nn.Sequential(
+            # Block 1
+            nn.Conv2d(1, 32, kernel_size=3, padding=1),
+            nn.BatchNorm2d(32),
+            nn.ReLU(),
+            nn.MaxPool2d(kernel_size=2, stride=2),
+            
+            # Block 2
+            nn.Conv2d(32, 64, kernel_size=3, padding=1),
+            nn.BatchNorm2d(64),
+            nn.ReLU(),
+            nn.MaxPool2d(kernel_size=2, stride=2),
+            
+            # Block 3
+            nn.Conv2d(64, 128, kernel_size=3, padding=1),
+            nn.BatchNorm2d(128),
+            nn.ReLU(),
+            nn.MaxPool2d(kernel_size=2, stride=2, padding=1) # ปรับ Padding ป้องกันมิติหลุด
+        )
         
-        model.add(layers.Conv2D(64, (3, 3), activation='relu', padding='same'))
-        model.add(layers.MaxPooling2D((2, 2)))
-        
-        model.add(layers.Conv2D(128, (3, 3), activation='relu', padding='same'))
-        model.add(layers.MaxPooling2D((2, 2)))
+        self.classifier = nn.Sequential(
+            nn.Flatten(),
+            nn.Linear(128 * 4 * 4, 256),
+            nn.ReLU(),
+            nn.Dropout(0.4),
+            nn.Linear(256, 10)
+        )
 
-    # Fully Connected Layers
-    model.add(layers.Flatten())
-    model.add(layers.Dense(128, activation='relu'))
-    model.add(layers.Dropout(0.3))
-    model.add(layers.Dense(num_classes, activation='softmax')) # Multi-class classification (10 คลาส)
-
-    model.compile(
-        optimizer='adam',
-        loss='sparse_categorical_crossentropy',
-        metrics=['accuracy']
-    )
-    
-    return model
+    def forward(self, x):
+        x = self.features(x)
+        x = self.classifier(x)
+        return x
