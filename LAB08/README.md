@@ -1,8 +1,6 @@
 # LAB 08: Deep Convolutional Neural Network (DCNN) on Fashion-MNIST
-
-**ชื่อผู้จัดทำ:** ธัญพิสิษฐ์ เทพธัญญะ (รหัสนักศึกษา: 116710462005-5)  
-**รายวิชา:** Machine Learning / Computer Engineering, มทร.ธัญบุรี  
-
+dataset Credit 
+https://www.kaggle.com/datasets/zalando-research/fashionmnist
 ---
 
 ##  ภาพรวมโครงการ (Project Overview)
