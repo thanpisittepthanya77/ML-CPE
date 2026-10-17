@@ -1,0 +1,24 @@
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler, LabelEncoder
+
+def load_and_preprocess(filepath):
+    df = pd.read_csv(filepath)
+    if 'Id' in df.columns:
+        df = df.drop('Id', axis=1)
+        
+    target_col = df.columns[-1]
+    X = df.drop(target_col, axis=1)
+    y_text = df[target_col]
+    
+    # แปลงชื่อคลาส (ตัวหนังสือ) ให้เป็นตัวเลข (0, 1, 2)
+    encoder = LabelEncoder()
+    y = encoder.fit_transform(y_text)
+    
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    
+    scaler = StandardScaler()
+    X_train_scaled = scaler.fit_transform(X_train)
+    X_test_scaled = scaler.transform(X_test)
+    
+    return X_train_scaled, X_test_scaled, y_train, y_test, encoder
