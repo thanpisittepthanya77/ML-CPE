@@ -8,14 +8,14 @@
 ---
 
 ##  โครงสร้างโปรเจกต์ (Project Structure)
-- `train.py`: สคริปต์สำหรับโหลด Pretrained Model (`yolov8n.pt`) และควบคุมกระบวนการ Train โมเดล YOLOv8
-- `evaluate.py`: สคริปต์ประเมินผลประสิทธิภาพของโมเดลเพื่อคำนวณค่าสำคัญ เช่น Precision, Recall และ mAP
-- `predict.py`: สคริปต์สำหรับการนำโมเดลที่ดีที่สุดมาทดสอบตีกรอบวัตถุบนรูปภาพ (Inference)
-- `runs/detect/`: โฟลเดอร์ที่ระบบบันทึกผลการทดลอง รวมถึงน้ำหนักของโมเดล (`best.pt`) และกราฟประเมินผล
+- `train.py` : สคริปต์สำหรับโหลด Pretrained Model (`yolov8n.pt`) และควบคุมกระบวนการ Train โมเดล YOLOv8
+- `evaluate.py` : สคริปต์ประเมินผลประสิทธิภาพของโมเดลเพื่อคำนวณค่าสำคัญ เช่น Precision, Recall และ mAP
+- `predict.py` : สคริปต์สำหรับการนำโมเดลที่ดีที่สุดมาทดสอบตีกรอบวัตถบบนรูปภาพ (Inference)
+- `runs/detect/` : โฟลเดอร์ที่ระบบบันทึกผลการทดลอง รวมถึงน้ำหนักของโมเดล (`best.pt`) และกราฟประเมินผล
 
 ---
 
-##  สถาปัตยกรรมและการฝึกสอน (Experimental Setup)
+## สถาปัตยกรรมและการฝึกสอน (Experimental Setup)
 - **Model:** YOLOv8n (Nano - ขนาดเล็ก น้ำหนักเบา เหมาะสำหรับการประมวลผลที่รวดเร็ว)
 - **Dataset:** COCO8 (ชุดข้อมูลมาตรฐานสำหรับการทดสอบระบบ Object Detection)
 - **Hyperparameters:**
@@ -40,4 +40,4 @@
 ### 3. ผลการตรวจจับวัตถุ (Object Detection Predictions)
 ตัวอย่างการทดสอบโมเดลในการตีกรอบ (Bounding Boxes) และระบุระดับความมั่นใจ (Confidence Score) บนภาพทดสอบ:
 
-![Prediction Result](runs/detect/LAB10_Results/Config_A_Epoch10/val_batch0_pred.jpg)
+![Prediction Result](runs/detect/predict/test_image.jpg)
